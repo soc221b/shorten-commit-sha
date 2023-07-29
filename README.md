@@ -1,105 +1,63 @@
-<p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
-</p>
+# Shorten Commit SHA
 
-# Create a JavaScript Action using TypeScript
+Export env and output sha with the shortened commit SHA.
 
-Use this template to bootstrap the creation of a TypeScript action.:rocket:
-
-This template includes compilation support, tests, a validation workflow, publishing, and versioning guidance.  
-
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
-
-## Create an action from this template
-
-Click the `Use this Template` and provide the new repo details for your action
-
-## Code in Main
-
-> First, you'll need to have a reasonably modern version of `node` handy. This won't work with versions older than 9, for instance.
-
-Install the dependencies  
-```bash
-$ npm install
-```
-
-Build the typescript and package it for distribution
-```bash
-$ npm run build && npm run package
-```
-
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
-
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-
-...
-```
-
-## Change action.yml
-
-The action.yml defines the inputs and output for your action.
-
-Update the action.yml with your name, description, inputs and outputs for your action.
-
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
-
-## Publish to a distribution branch
-
-Actions are run from GitHub repos so we will checkin the packed dist folder. 
-
-Then run [ncc](https://github.com/zeit/ncc) and push the results:
-```bash
-$ npm run package
-$ git add dist
-$ git commit -a -m "prod dependencies"
-$ git push origin releases/v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket: 
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
+## Example Usage
 
 ```yaml
-uses: ./
-with:
-  milliseconds: 1000
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: Job 1
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - id: shorten_commit_sha
+        uses: iendeavor/shorten-commit-sha@v1.0.0
+
+      - run: |
+          echo "env: ${{ env.shortened_commit_sha }}"
+          echo "output: ${{ steps.shorten_commit_sha.outputs.shortened_commit_sha }}"
+
+  job2:
+    runs-on: ubuntu-latest
+    name: Job 2
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - id: shorten_commit_sha
+        uses: iendeavor/shorten-commit-sha@v1.0.0
+        with:
+          env_name: foo
+          length: 8
+          output_name: bar
+          pull_request_github_sha: github.event.pull_request.head.sha # use the last commit to the head branch of the pull request, instead of the last merge commit of the pull request merge branch
+
+      - run: |
+          echo "env: ${{ env.foo }}"
+          echo "output: ${{ steps.shorten_commit_sha.outputs.bar }}"
 ```
 
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
+## Input
 
-## Usage:
+See [action.yml](https://github.com/iendeavor/shorten-sommit-sha/blob/main/action.yml)
 
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
+| Name                    | Default                | Options                                              | Description                                                                                                                                        |
+| ----------------------- | ---------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| env_name                | 'shortened_commit_sha' |                                                      | The env name of the shortened sha.                                                                                                                 |
+| length                  | '7'                    |                                                      | The length of the shortened sha.                                                                                                                   |
+| output_name             | 'shortened_commit_sha' |                                                      | The output name of the shortened sha.                                                                                                              |
+| pull_request_github_sha | "github.sha"           | "github.sha" \| "github.event.pull_request.head.sha" | The sha to be shortened for pull requests. See also: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request |
+
+## Sponsor
+
+Thank you for using shorten-commit-sha action.
+
+If this helps you, please consider by me a coffee:
+
+- [Buy Me a Coffee](https://bmc.link/iendeavor)
+- [PayPal](https://paypal.me/iendeavor)
