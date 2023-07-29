@@ -1,10 +1,11 @@
-# Shorten Commit SHA
+name: 'example'
 
-Export env and output sha with the shortened commit SHA.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 
-# Example Usage
-
-```yaml
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -40,8 +41,3 @@ jobs:
       - run: |
           echo "env: ${{ env.foo }}"
           echo "output: ${{ steps.shorten_commit_sha.outputs.bar }}"
-```
-
-# Input
-
-See [action.yml](https://github.com/iendeavor/shorten-sommit-sha/blob/main/action.yml)

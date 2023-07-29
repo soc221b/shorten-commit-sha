@@ -1,11 +1,38 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'shorten-commit-sha'
+
+description: 'Export env and output sha with the shortened commit SHA'
+
+author: 'iendeavor'
+
+branding:
+  icon: "git-commit"
+  color: "blue"
+
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  env_name:
+    required: false
+    description: The env name of the shortened sha.
+    default: shortened_commit_sha
+
+  length:
+    required: false
+    description: The length of the shortened sha.
+    default: 7
+
+  output_name:
+    required: false
+    description: The output name of the shortened sha.
+    default: shortened_commit_sha
+
+  pull_request_github_sha:
+    required: false
+    description: "The sha to be shortened for pull requests. See also: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request"
+    default: github.sha
+    options:
+      - github.sha
+      - github.event.pull_request.head.sha
+
 runs:
   using: 'node16'
+
   main: 'dist/index.js'
