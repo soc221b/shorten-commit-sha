@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
 
       - id: shorten_commit_sha
-        uses: iendeavor/shorten-commit-sha@v1.0.0
+        uses: iendeavor/shorten-commit-sha@v2.0.0
 
       - run: |
           echo "env: ${{ env.shortened_commit_sha }}"
@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
 
       - id: shorten_commit_sha
-        uses: iendeavor/shorten-commit-sha@v1.0.0
+        uses: iendeavor/shorten-commit-sha@v2.0.0
         with:
           env_name: foo
           length: 8
