@@ -1,6 +1,6 @@
 {
   "name": "shorten-commit-sha",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "description": "Export env and output sha with the shortened commit SHA",
   "main": "lib/main.js",
