@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.1...v2.0.2) (2024-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @actions/github to v6 ([#100](https://github.com/soc221b/shorten-commit-sha/issues/100)) ([bcb7440](https://github.com/soc221b/shorten-commit-sha/commit/bcb7440d13484d64e8601cc844e18a5744eb4cf6))
+
 ## [2.0.1](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.0...v2.0.1) (2024-06-19)
 
 
