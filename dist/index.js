@@ -73,10 +73,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.shorten = void 0;
+exports.shorten = shorten;
 function shorten(param) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
+        var _a, _b;
         const sha = param.github.context.eventName === 'pull_request' &&
             param.core.getInput('pull_request_github_sha') ===
                 'github.event.pull_request.head.sha'
@@ -89,7 +89,6 @@ function shorten(param) {
         param.core.exportVariable(param.core.getInput('env_name'), shortened_sha);
     });
 }
-exports.shorten = shorten;
 
 
 /***/ }),
