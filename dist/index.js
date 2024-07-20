@@ -80,9 +80,9 @@ function shorten(param) {
         const sha = param.github.context.eventName === 'pull_request' &&
             param.core.getInput('pull_request_github_sha') ===
                 'github.event.pull_request.head.sha'
-            ? (_b = (_a = param.github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head.sha) !== null && _b !== void 0 ? _b : (() => {
+            ? ((_b = (_a = param.github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head.sha) !== null && _b !== void 0 ? _b : (() => {
                 throw ReferenceError('cannot get github.event.pull_request.head.sha');
-            })()
+            })())
             : param.github.context.sha;
         const shortened_sha = sha.slice(0, parseInt(param.core.getInput('length'), 10));
         param.core.setOutput(param.core.getInput('output_name'), shortened_sha);
