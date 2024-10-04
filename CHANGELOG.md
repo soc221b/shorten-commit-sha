@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.2...v2.0.3) (2024-10-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @octokit/webhooks-types to v7.6.1 ([#153](https://github.com/soc221b/shorten-commit-sha/issues/153)) ([12aed42](https://github.com/soc221b/shorten-commit-sha/commit/12aed42afd9a481de00fedc485d0ae499736ce78))
+
 ## [2.0.2](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.1...v2.0.2) (2024-06-30)
 
 
