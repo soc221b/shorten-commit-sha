@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.3...v2.0.4) (2025-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @actions/core to v1.11.1 ([#152](https://github.com/soc221b/shorten-commit-sha/issues/152)) ([e9ebdcc](https://github.com/soc221b/shorten-commit-sha/commit/e9ebdccd7a997a189f333ba3dd487e983c0b2a7f))
+
 ## [2.0.3](https://github.com/soc221b/shorten-commit-sha/compare/v2.0.2...v2.0.3) (2024-10-04)
 
 
