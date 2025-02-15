@@ -17,10 +17,10 @@ export async function shorten(param: Param): Promise<void> {
     param.github.context.eventName === 'pull_request' &&
     param.core.getInput('pull_request_github_sha') ===
       'github.event.pull_request.head.sha'
-      ? param.github.context.payload.pull_request?.head.sha ??
+      ? (param.github.context.payload.pull_request?.head.sha ??
         (() => {
           throw ReferenceError('cannot get github.event.pull_request.head.sha')
-        })()
+        })())
       : param.github.context.sha
 
   const shortened_sha = sha.slice(
