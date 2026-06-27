@@ -39,7 +39,7 @@
     "globals": "17.7.0",
     "jest": "30.4.2",
     "jiti": "2.7.0",
-    "js-yaml": "5.1.0",
+    "js-yaml": "5.2.0",
     "prettier": "3.8.5",
     "ts-jest": "29.4.11",
     "typescript": "6.0.3",
